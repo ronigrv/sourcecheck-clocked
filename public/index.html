@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f2e9">
+  <title>Sourcecheck — evidence review desk</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="Sourcecheck home"><span class="brand-mark">S<span>·</span></span><span>sourcecheck<small>AN EVIDENCE REVIEW DESK</small></span></a>
+    <span class="edition"><span class="edition-dot"></span> CLOCKED / FIELD NOTES 01</span>
+  </header>
+  <main>
+    <section class="intro">
+      <div><p class="eyebrow"><span>01</span> THE REVIEW DESK</p><h1>Put the answer<br><em>to the evidence.</em></h1></div>
+      <div class="intro-copy"><p>Bring a question, a proposed answer, and the material it rests on. See what the sources actually support.</p><span class="fiction-label">STARTER CASE / FICTIONAL</span></div>
+    </section>
+    <div class="workspace">
+      <section class="inputs" aria-labelledby="case-heading">
+        <div class="section-head"><div><p class="eyebrow">CASE FILE <span>01—03</span></p><h2 id="case-heading">Build your review</h2></div><button class="text-button" id="reset" type="button">Reset example ↗</button></div>
+        <form id="review-form">
+          <label class="field"><span><b>01</b> THE QUESTION</span><input id="question" required placeholder="What are you trying to find out?"></label>
+          <label class="field"><span><b>02</b> THE PROPOSED ANSWER</span><textarea id="answer" rows="3" required placeholder="Write the answer you want to check"></textarea></label>
+          <div class="source-heading"><div><span class="field-label"><b>03</b> SOURCE MATERIAL</span><p>Add the text you want the answer checked against.</p></div><button class="add-button" id="add-source" type="button">+ Add source</button></div>
+          <div id="sources"></div>
+          <div class="form-bottom"><p>Sources are reviewed as supplied.<br>Use synthetic or non-sensitive text.</p><button class="run-button" id="run" type="submit">Run review <span>↗</span></button></div>
+        </form>
+      </section>
+      <aside class="results" aria-labelledby="results-heading">
+        <div class="results-top"><div><p class="eyebrow">REVIEW OUTPUT</p><h2 id="results-heading">The evidence<br>report<span>.</span></h2></div><span class="report-index">R / 01</span></div>
+        <div class="notice"><span>!</span><p><strong>Support is not truth.</strong> This review checks the answer against the supplied sources. It does not independently verify those sources or establish facts. Read the original passages for conditions and qualifications the review may miss.</p></div>
+        <div id="status" class="status" role="status" aria-live="polite"><span class="status-icon">↗</span><div><strong>Ready when you are.</strong><p>Run the fictional case or replace it with your own source material.</p></div></div>
+        <div id="report" hidden>
+          <div class="report-section"><div class="report-title"><span>01</span><div><h3>Source ranking</h3><p>How the material relates to the question</p></div></div><div id="rerank" class="result-content"></div></div>
+          <div class="report-section"><div class="report-title"><span>02</span><div><h3>Source comparison</h3><p>Relationships and potential conflicts</p></div></div><div id="compare" class="result-content"></div></div>
+          <div class="report-section"><div class="report-title"><span>03</span><div><h3>Grounding</h3><p>What the supplied sources support</p></div></div><div id="grounding" class="result-content"></div></div>
+        </div>
+        <div class="results-footer"><span>SOURCECHECK / REVIEW DESK</span><span>●</span></div>
+      </aside>
+    </div>
+    <footer><span>MADE FOR CAREFUL READING</span><span>Evidence is a starting point, not a verdict. ↗</span></footer>
+  </main>
+</body>
+</html>
