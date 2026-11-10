@@ -2,7 +2,7 @@
 
 SourceCheck helps a reviewer compare a proposed claim with supplied sources. It uses Clocked to rank passages, identify relationships between sources, and assess individual claims against those sources. It reports support in the documents supplied, not objective truth. Reviewers should check the original material and any missing evidence.
 
-[Watch the short walkthrough](demo.mp4). The walkthrough uses fictional data and screenshots captured from a real review.
+[Watch the short walkthrough on YouTube](https://youtu.be/vUER9wUbrDc). The walkthrough uses fictional data and screenshots captured from a real review.
 
 ## Run locally
 
