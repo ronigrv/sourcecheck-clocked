@@ -41,6 +41,7 @@ function addSource(data = {}) {
   remove.addEventListener('click', () => {
     card.remove();
     updateSourceNumbers();
+    invalidateReport();
   });
   const text = element('textarea');
   text.required = true;
@@ -66,6 +67,19 @@ function setStatus(title, message, kind = '') {
   const copy = element('div');
   copy.append(element('strong', title), element('p', message));
   status.append(icon, copy);
+}
+
+function invalidateReport() {
+  if (!report.hidden) {
+    report.hidden = true;
+    setStatus('Case changed.', 'Run the review again to see results for the current inputs.');
+  }
+}
+
+function setReviewBusy(busy) {
+  // Keep the visible case fixed until its corresponding response arrives.
+  form.querySelectorAll('input, textarea, button').forEach(control => { control.disabled = busy; });
+  document.querySelector('#reset').disabled = busy;
 }
 
 function resetExample() {
@@ -174,8 +188,10 @@ document.querySelector('#add-source').addEventListener('click', () => {
     return;
   }
   addSource();
+  invalidateReport();
 });
 document.querySelector('#reset').addEventListener('click', resetExample);
+form.addEventListener('input', invalidateReport);
 form.addEventListener('submit', async event => {
   event.preventDefault();
   const documents = [...sources.children].map(card => ({
@@ -191,7 +207,7 @@ form.addEventListener('submit', async event => {
     setStatus('The case needs more detail.', 'Add a question, an answer, and at least two sources with a title and text.', 'error');
     return;
   }
-  run.disabled = true;
+  setReviewBusy(true);
   run.textContent = 'Reviewing…';
   report.hidden = true;
   status.hidden = false;
@@ -224,7 +240,7 @@ form.addEventListener('submit', async event => {
   } catch (error) {
     setStatus('Review unavailable.', error instanceof Error ? error.message : 'Please try again.', 'error');
   } finally {
-    run.disabled = false;
+    setReviewBusy(false);
     run.replaceChildren(document.createTextNode('Run review '), element('span', '↗'));
   }
 });
